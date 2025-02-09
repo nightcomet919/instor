@@ -1,38 +1,158 @@
-<div align=center>
+﻿# FULL Stack Application based on MERN - Furniture Organizer
 
-# Github Activity Generator
+The Furniture Organizer App is a full-stack web application based on the MERN (MongoDB, Express, React, Node.js) stack. The primary goal of this project is to provide users with a convenient tool to organize their furniture pieces within their homes or apartments according to size categories - small, medium, and large.
 
-</div>
+## Features
 
->disclaimer: I made this project with the aim of having fun and to learn to automate things using the Python language
+- **User-friendly Interface:** The app offers an intuitive and user-friendly interface, making it easy for users to navigate and manage their furniture items effortlessly.
 
-hello, this is my second automation project which is making a github activity generator, using this script you can change and manipulate your github contribution timeline from arid to greenish:
+- **Organize by Size:** Users can categorize their furniture items into three size categories: small, medium, and large. This helps them visualize and plan their space more effectively.
 
-## Before 😩👎 
-![Github Activity Generator](https://i.postimg.cc/d1NGrsSX/unactive-commit.png "before")
+- **Add and Edit Furniture:** The app allows users to add new furniture items to their inventory. Additionally, users can edit existing furniture entries to update their details as needed.
 
-be lush and very green, you will look very active and consistent in contributing on Github:
+- **MongoDB Database:** The app utilizes MongoDB to store furniture data, enabling efficient data retrieval and storage.
 
-## After 💪👍
-![Github Activity Generator](https://i.postimg.cc/sxB7Jkk2/active-commit.png "after")
+- **Express Backend:** The backend is built using Express, which ensures smooth communication between the frontend and the database.
 
-## How to use?
-1. Make sure in your Machine already installed Python 3 and Git
-2. Make sure Git in in your Machine already configured with Github.
-3. create an empty Github Repository can public or private, but I prefer you to make it private. do not initialize it.
-4. Download the [main.py script](https://github.com/aliifam/github-activity-generator/archive/main.zip) and open the file in your text editor.
-5. delete the file commit.txt
-6. customize the script in main.py for configuration as you want in here:
-```python
-total_day = 366 #total days back
-commit_frequency = 10 #commit time per day
-repo_link = "https://github.com/aliifam/github-activity-generator.git"
+- **React Frontend:** The frontend is developed using React, offering a dynamic and interactive user experience.
+
+- **Authentication with hashing:** Finally the authentication mechanism is implemented. Password is stored in the database using the provided hashing function
+
+## Demo
+
+https://instor.alpaycelik.dev
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/AlpayC/Furniture_MERN
 ```
-7. after the script is already, you just run the script and see the magic.
-8. the script will make a new commit.txt file and make very many commit as you want after the process finished the script will push the repository to GitHub.
-9. after all the process is successful, please press the star for this repository😊.
 
-## Troubleshooting
-do you have a question or do you get an error?
+Go to the project directory and start the server incl. frontend
 
-please create an [issue](https://github.com/aliifam/github-activity-generator/issues) in this repository and I will try to answer and solve it.
+```bash
+  cd backend
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  node server.js
+```
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file in the specific directory
+
+./backend
+
+`CLOUDINARY_CLOUDNAME`
+
+`CLOUDINARY_API_KEY`
+
+`CLOUDINARY_API_SECRET`
+
+`MONGO_URI`
+
+`TOKEN_SECRET`
+
+`MAILGUN_API_KEY`
+
+`RENDER_EXTERNAL_URL`
+
+`APP_NAME`
+
+`MAILGUN_DOMAIN`
+
+./frontend
+
+`VITE_BACKEND_URL`
+
+## API Reference
+
+#### Get all items
+
+```http
+  GET /api/furniture
+```
+
+#### Get all items of a category
+
+```http
+  GET /api/furniture?size=${sizename}
+```
+
+| Parameter | Type     | Description                                        |
+| :-------- | :------- | :------------------------------------------------- |
+| `size`    | `string` | **Required**. value="klein" or "mittel" or "gross" |
+
+#### Get item with id
+
+```http
+  GET /api/furniture/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of item to fetch |
+
+#### Post new item
+
+```http
+  POST /api/addFurniture/
+```
+
+| Form body     | Type     | Description                              |
+| :------------ | :------- | :--------------------------------------- |
+| `title`       | `string` | **Required**. title of new item          |
+| `room`        | `string` | **Required**. room size of new item      |
+| `size`        | `string` | **Required**. furniture size of new item |
+| `image`       | `file`   | **Required**. jpg/png file of new item   |
+| `description` | `string` | **Required**. description of new item    |
+
+#### Update item by id
+
+```http
+  PUT /api/updateFurniture/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of item to fetch |
+
+| Input field   | Type     | Description                |
+| :------------ | :------- | :------------------------- |
+| `title`       | `string` | title of new item          |
+| `room`        | `string` | room size of new item      |
+| `size`        | `string` | furniture size of new item |
+| `image`       | `file`   | jpg/png file of new item   |
+| `description` | `string` | description of new item    |
+
+#### Delete item by id
+
+```http
+  DELETE /api/deleteFurniture/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of item to fetch |
+
+## Authors
+
+- [@AlpayC](https://www.github.com/AlpayC)
+- [@BorisD2023](https://github.com/BorisD2023)
+
+## Roadmap
+
+- Additional query support
+
+- Add login / register functionality
